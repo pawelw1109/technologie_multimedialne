@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zad7</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .kontener {
+            position: relative;
+            border: 1px solid black;
+            height: 500px;
+            width: 500px;
+        }
+
+        .kontener>div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+            position: absolute;
+            padding: 5px;
+            height: 90px;
+            width: 90px;
+            background-color: cornflowerblue;
+            color: white;
+        }
+
+        .kontener>div>div:hover {
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <div class="kontener">
+        <div class="divy">
+            <div class="gora">Góra</div>
+            <p>1</p>
+            <div class="dol">Dół</div>
+        </div>
+        <div class="divy">
+            <div class="gora">Góra</div>
+            <p>2</p>
+            <div class="dol">Dół</div>
+        </div>
+        <div class="divy">
+            <div class="gora">Góra</div>
+            <p>3</p>
+            <div class="dol">Dół</div>
+        </div>
+    </div>
+
+    <script>
+
+        $('.divy').each(function (index) {
+            this.style.top = `${index * 100}px`
+        })
+
+        $('.divy').mouseenter(function () {
+            this.classList.toggle('active');
+
+            $('.divy.active > .gora').click(() => {
+                if (this.offsetTop === 0) return 0;
+                // dodaje do poprzedniego
+                const positionActive = $('.divy.active').position();
+                $('.divy.active').animate({
+                    top: `${positionActive.top - 100}px`
+                })
+
+                // szukamy gornego
+
+            })
+
+            $('.divy.active > .dol').click(() => {
+                if (this.offsetTop === 200) return 0;
+                // dodaj do nastepnego
+                const positionActive = $('.divy.active').position();
+                $('.divy.active').animate({
+                    top: `${positionActive.top + 100}px`
+                })
+            })
+        })
+
+        $('.divy').mouseleave(function () {
+            this.classList.toggle('active');
+        })
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        section {
+            position: relative;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+
+        section>div {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 0;
+            width: 50px;
+            background-color: darkolivegreen;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <section></section>
+    <label>czas: <input class="time" type='number' /></label>
+    <button class="start">Start</button>
+    </br>
+    <label>słupki: <input class="slupki" type='number' /></label>
+    <button class="add">Dodaj słupek</button>
+    <p></p>
+
+    <script>
+        const divy = [];
+
+        const createDivs = (procent, position) => {
+            const div = document.createElement('div');
+            div.style.left = `${position * 51}px`;
+            div.textContent = procent;
+            $('section').append(div);
+        }
+
+        $('.add').click(() => {
+            const val = $('.slupki').val();
+            if (Number(val) < 0 || Number(val) > 100) return 0;
+            divy.push(Number(val));
+
+            $('p').html(divy.join(', '))
+            $('.slupki').val('');
+        })
+
+        $('.start').click(() => {
+
+            const val = $('input').val();
+            if (divy.length === 0 || val < 1 || val > 10) return 0;
+            // tworzymy divy
+
+            divy.forEach((el, i) => {
+                createDivs(el, i);
+            })
+
+            $('section > div').each(function () {
+                const procent = this.textContent;
+                $(this).animate({
+                    height: `${procent}%`
+                }, Number(val) * 1000)
+            })
+        })
+
+    </script>
+
+</body>
+
+</html>

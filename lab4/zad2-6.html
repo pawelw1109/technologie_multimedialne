@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid black;
+            width: 500px;
+            margin: auto;
+            height: 200px;
+        }
+
+        div>img {
+            position: absolute;
+            width: 100%;
+            height: 200px;
+        }
+
+        div>img.img1 {
+            left: 0;
+        }
+
+        div>img.img2 {
+            left: -100%;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <div>
+        <img class="img1" src='obr1.jpg' />
+        <img class="img2" src='obr1.jpg' />
+    </div>
+
+    <script>
+        let position1 = 0;
+        let position2 = -500;
+
+        const animation = () => {
+            $('.img1').animate({
+                left: position1 + 'px'
+            }, 0)
+
+            $('.img2').animate({
+                left: position2 + 'px'
+            }, 0)
+        }
+
+        setInterval(() => {
+            position1 = position1 + 1;
+            position2 = position2 + 1;
+            // console.log(position1, position2);
+            if (position1 === 500) position1 = -500;
+            if (position2 === 500) position2 = -500;
+            animation();
+        }, 10)
+
+    </script>
+
+</body>
+
+</html>

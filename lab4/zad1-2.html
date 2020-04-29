@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div {
+            height: 100px;
+            width: 100px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <div class="p1" style="background-color: cornflowerblue;">0</div>
+    <div class="p2" style="background-color: darkgoldenrod;">0</div>
+    <div class="p3" style="background-color: darkgreen;">0</div>
+
+    <select>
+        <option>Wybierz</option>
+        <option value="p1">Przycisk 1</option>
+        <option value="p2">Przycisk 2</option>
+        <option value="p3">Przycisk 3</option>
+    </select>
+
+    <script>
+
+        $('div').click(function () {
+            this.innerHTML = Number(this.textContent) + 1;
+        })
+
+        $('select').change(function () {
+            console.log(this.value);
+            $(`div.${this.value}`).html(0);
+        })
+
+    </script>
+
+</body>
+
+</html>

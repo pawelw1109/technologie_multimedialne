@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zad4</title>
+
+    <style>
+        section {
+            position: relative;
+            height: 400px;
+        }
+
+        div {
+            position: relative;
+            margin-bottom: 50px;
+            height: 300px;
+            width: 100px;
+            background-color: cadetblue;
+        }
+
+        form {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        input {
+            width: 100px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <section>
+        <div></div>
+        <form>
+            <p class="error"></p>
+            <input type='number' min='1' max='10' placeholder="1-10" />
+            <button>Start</button>
+        </form>
+    </section>
+
+    <script>
+
+        $('button').click(e => {
+            e.preventDefault();
+            const inputVallue = $('input').val();
+
+            if (Number(inputVallue) < 1 || Number(inputVallue) > 10) {
+                $('p').html('liczba od 1 do 10!')
+                return 0;
+            } else {
+                $('p').html('')
+            }
+
+            $('div').animate({
+                height: 'toggle'
+            }, Number(inputVallue) * 1000)
+        })
+
+    </script>
+
+</body>
+
+</html>

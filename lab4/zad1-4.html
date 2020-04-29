@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <div class="position">Pozycja - </div>
+    <canvas width="200px" height="200px"></canvas>
+    <div>Sterowanie w, s, d, a</div>
+
+    <script>
+
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext("2d");
+        let positionELement = { x: 0, y: 0 }
+
+        const moveElent = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillRect(positionELement.x, positionELement.y, 50, 50);
+        }
+
+        moveElent();
+
+        $('canvas').mousemove(function (e) {
+            const positionX = e.clientX - this.offsetLeft
+            const positionY = e.clientY - this.offsetTop
+            $('div.position').html(`Pozycja - x: ${positionX}, y: ${positionY}`)
+        })
+
+        $('canvas').mouseleave(() => {
+            $('div.position').html('Pozycja - Kursor poza płótnem')
+        })
+
+        window.addEventListener('keydown', (e) => {
+            // w - 87, s - 83, d - 68, a - 65
+
+            const pxels = 10;
+
+            switch (e.keyCode) {
+                case 87:
+                    positionELement.y = positionELement.y - pxels;
+                    break;
+                case 83:
+                    positionELement.y = positionELement.y + pxels;
+                    break;
+                case 68:
+                    positionELement.x = positionELement.x + pxels;
+                    break;
+                case 65:
+                    positionELement.x = positionELement.x - pxels;
+                    break;
+            }
+            moveElent();
+        });
+
+    </script>
+
+</body>
+
+</html>

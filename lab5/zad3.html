@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        nav {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .panel {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div>
+            <div class="flip">Click to slide down panel</div>
+            <div class="panel">Hello world!</div>
+        </div>
+        <div>
+            <div class="flip">Click to slide down panel</div>
+            <div class="panel">Hello world!</div>
+        </div>
+        <div>
+            <div class="flip">Click to slide down panel</div>
+            <div class="panel">Hello world!</div>
+        </div>
+    </nav>
+
+    <script>
+
+        const hideAllPanel = () => {
+            $('.flip').removeClass('down');
+            $('.panel').slideUp();
+        }
+
+        $('.flip').click(function () {
+            this.classList.toggle('active');
+            hideAllPanel();
+            const down = $(this).hasClass('down');
+            if (!down) {
+                $(`.flip.active ~ .panel`).slideDown();
+            }
+            else {
+                $(`.flip.active ~ .panel`).slideUp();
+            }
+            this.classList.toggle('down');
+            this.classList.toggle('active');
+        })
+
+    </script>
+
+</body>
+
+</html>

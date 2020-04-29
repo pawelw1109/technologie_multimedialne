@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        section {
+            position: relative;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+
+        section>div {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            background-color: darkolivegreen;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <section>
+        <div></div>
+    </section>
+    <input type='number' />
+    <button>Start</button>
+
+    <script>
+
+        $('button').click(() => {
+            const val = $('input').val();
+            if (val < 1 || val > 10) return 0;
+
+            $('div').animate({
+                top: 0,
+            }, Number(val) * 1000)
+        })
+
+    </script>
+
+</body>
+
+</html>

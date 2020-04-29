@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <canvas width="400" height="400"></canvas>
+
+    <script>
+
+        const canvas = document.querySelector("canvas");
+        const ctx = canvas.getContext("2d");
+        const obiect = { x: 0, y: 0 }
+        let side = 'right';
+
+        const rysuj = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillRect(obiect.x, obiect.y, 50, 50);
+        }
+
+        rysuj();
+
+        setInterval(() => {
+
+            if (side === 'left') {
+                obiect.x = obiect.x - 1;
+            } else if (side === 'right') {
+                obiect.x = obiect.x + 1;
+            } else if (side === 'top') {
+                obiect.y = obiect.y - 1;
+            } else if (side === 'bottom') {
+                obiect.y = obiect.y + 1;
+            }
+
+            if (side === 'right' && obiect.x === canvas.width - 50)
+                side = 'bottom';
+            else if (side === 'bottom' && obiect.y === canvas.height - 50)
+                side = 'left';
+            else if (side === 'left' && obiect.x === 0)
+                side = 'top';
+            else if (side === 'top' && obiect.y === 0)
+                side = 'right'
+
+            rysuj();
+
+        }, 1)
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zad 6</title>
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <div class="text"></div>
+    <textarea maxlength="200"></textarea>
+    <button>Dodaj</button>
+    <div class="error"></div>
+
+    <script>
+        $('button').click(() => {
+            const text = $('textarea').val();
+
+            if (text.length > 200) {
+                $('.error').html('wprowadź mniej niż 200 znaków')
+                return 0;
+            }
+
+            $('.error').html(`Zostało do wpisania jeszcze ${200 - text.length} znaków`)
+            $('.text').html(text)
+            $('textarea').val('');
+        })
+
+    </script>
+</body>
+
+</html>

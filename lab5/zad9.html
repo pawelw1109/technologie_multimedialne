@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zad9</title>
+
+    <style>
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            opacity: 0.1;
+            font-size: 14px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <div></div>
+    <input type='text' value='' />
+    <button>Start</button>
+
+    <script>
+
+        $('input').keyup(() => {
+            const value = $('input').val();
+            $('div').html(value);
+        });
+
+        $('button').click(() => {
+            $('div').animate({
+                opacity: '1',
+                fontSize: '30px'
+            }, 2000, () => {
+                $('div').animate({
+                    opacity: '0.1',
+                    fontSize: '14px'
+                })
+                $('div').html('');
+                $('input').val('');
+            })
+        })
+
+    </script>
+
+</body>
+
+</html>

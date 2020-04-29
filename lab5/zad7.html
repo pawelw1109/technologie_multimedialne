@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zad7</title>
+
+    <style>
+        .kontener {
+            position: relative;
+            border: 1px solid black;
+            height: 500px;
+            width: 500px;
+        }
+
+        .kontener>div {
+            position: relative;
+            height: 100px;
+            width: 100px;
+            background-color: cornflowerblue;
+        }
+
+        .kontener>div.right {
+            left: 0;
+        }
+
+        .kontener>div.left {
+            left: calc(100% - 102px);
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <div class="kontener">
+        <div class="right"></div>
+        <div class="right"></div>
+        <div class="right"></div>
+    </div>
+    <button>Start</button>
+
+    <script>
+
+        const animationTime = 1000;
+        let side = 'left'
+
+        $('button').click(() => {
+            const left = { left: `80%` }
+            const right = { left: `0` }
+
+            $('.right').each(function (index) {
+                const delayElement = index * animationTime
+                const element = $(`.right:nth-child(${index + 1})`);
+                if (side === 'left')
+                    element.delay(delayElement).animate(left, animationTime)
+                else
+                    element.delay(delayElement).animate(right, animationTime)
+            })
+            if (side === 'left') side = 'right'
+            else side = 'left'
+        })
+    </script>
+
+</body>
+
+</html>
